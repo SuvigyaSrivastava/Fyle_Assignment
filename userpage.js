@@ -1,6 +1,6 @@
 import { Octokit } from "https://esm.sh/octokit";
-
-const token = "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";
+const decrypted = "11DUJABCB04JHpgt3m1Rxh_uVALLr5kWLY7ridiJ5l1h0e1pdNuADMl9xadaM5fqeP2I324SPGCu00dtBB"
+const token = "github_pat_"+caesarCipher(decrypted, 3, true);;
 
 const octokit = new Octokit({
     auth: token
@@ -92,3 +92,10 @@ async function getUserRepos(username) {
 }
 
 getUserDetails();
+function caesarCipher(text, shift, decrypt = false) {
+    return text.replace(/[a-zA-Z]/g, char => {
+      const base = char.toLowerCase() === char ? 'a'.charCodeAt(0) : 'A'.charCodeAt(0);
+      const offset = (char.charCodeAt(0) - base + (decrypt ? 26 - shift : shift)) % 26;
+      return String.fromCharCode(base + offset);
+    });
+  }

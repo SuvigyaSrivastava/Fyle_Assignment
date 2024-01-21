@@ -41,7 +41,7 @@ const octokit = new Octokit({
 
   function openResultPage(username, userData) {
     // Create a URL with query parameters
-    const url = index2.html?username=${encodeURIComponent(username)}&data=${encodeURIComponent(JSON.stringify(userData))};
+    const url = `index2.html?username=${encodeURIComponent(username)}&data=${encodeURIComponent(JSON.stringify(userData))};`
 
     // Navigate to the new page
     window.location.href = url;
